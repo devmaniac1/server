@@ -6,6 +6,8 @@ require("dotenv").config();
 
 const citiesRoutes = require("./routes/citiesRoutes")
 const projectsRoutes = require("./routes/projectsRoutes")
+const emailRoutes = require("./routes/emailRoutes");
+
 
 const app=express()
 
@@ -22,6 +24,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/cities",citiesRoutes)
 app.use("/api/projects",projectsRoutes)
+app.use("/api/email", emailRoutes);
 
 mongoose.connect(mongoDB).then(()=>{
 	const connection = mongoose.connection;
