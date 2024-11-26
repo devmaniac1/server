@@ -2,9 +2,9 @@ const Project = require("../models/projectSchema");
 
 exports.createProject = async (req, res) => {
   try {
-    const { title, content, link, image } = req.body;
+    const { title, content, link, image, features, technologies } = req.body;
 
-    if (!title || !content || !link || !image) {
+    if (!title || !content || !link || !image || !features || !technologies) {
       return res.status(400).json({ message: "All fields are required." });
     }
 
@@ -13,6 +13,8 @@ exports.createProject = async (req, res) => {
       content,
       link,
       image,
+      features,
+      technologies,
     });
 
     await project.save();
@@ -49,11 +51,11 @@ exports.getProjectById = async (req, res) => {
 exports.updateProject = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, content, link, image } = req.body;
+    const { title, content, link, image, features, technologies } = req.body;
 
     const updatedProject = await Project.findByIdAndUpdate(
       id,
-      { title, content, link, image },
+      { title, content, link, image, features, technologies },
       { new: true, runValidators: true }
     );
 
