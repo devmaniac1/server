@@ -17,6 +17,22 @@ const projectSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  features: {
+    type: [String],
+    default: [],
+  },
+  technologies: [
+    {
+      name: {
+        type: String,
+        required: true,
+      },
+      url: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
 });
 
 const project = mongoose.model("Project", projectSchema);
